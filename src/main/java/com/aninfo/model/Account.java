@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Account {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cbu;
 
     private Double balance;
@@ -33,5 +33,6 @@ public class Account {
     public void setBalance(Double balance) {
         this.balance = balance;
     }
+
 
 }

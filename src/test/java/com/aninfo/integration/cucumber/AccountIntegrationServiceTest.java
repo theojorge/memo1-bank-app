@@ -2,6 +2,7 @@ package com.aninfo.integration.cucumber;
 
 import com.aninfo.Memo1BankApp;
 import com.aninfo.model.Account;
+import com.aninfo.model.Deposit;
 import com.aninfo.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -23,7 +24,7 @@ public class AccountIntegrationServiceTest {
     }
 
     Account deposit(Account account, Double sum) {
-        return accountService.deposit(account.getCbu(), sum);
+        return accountService.deposit(account.getCbu(), sum, new Deposit());
     }
 
 }
