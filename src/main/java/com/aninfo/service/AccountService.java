@@ -2,7 +2,8 @@ package com.aninfo.service;
 
 import com.aninfo.exceptions.DepositNegativeSumException;
 import com.aninfo.exceptions.InsufficientFundsException;
-import com.aninfo.exceptions.InvalidTransactionCbuException;
+import com.aninfo.exceptions.InvalidIdException;
+
 import com.aninfo.model.Account;
 import com.aninfo.model.Deposit;
 import com.aninfo.repository.AccountRepository;
@@ -29,7 +30,7 @@ public class AccountService {
 
     public Optional<Account> findById(Long cbu) {
         if (accountRepository.findById(cbu).isEmpty())
-            throw new InvalidTransactionCbuException("Cbu is not  existent");
+            throw new InvalidIdException("Cbu is not existent");
         return accountRepository.findById(cbu);
     }
 
@@ -38,6 +39,8 @@ public class AccountService {
     }
 
     public void deleteById(Long cbu) {
+        if (accountRepository.findById(cbu).isEmpty())
+            throw new InvalidIdException("Cbu is not existent");
         accountRepository.deleteById(cbu);
     }
 

@@ -1,7 +1,7 @@
 package com.aninfo.model;
 
 import com.aninfo.exceptions.InsufficientFundsException;
-import com.aninfo.exceptions.InvalidTransactionCbuException;
+import com.aninfo.exceptions.InvalidIdException;
 import com.aninfo.service.AccountService;
 
 import javax.persistence.Entity;
@@ -17,7 +17,7 @@ public class Deposit extends Transaction{
 
     public void transactAccount(AccountService accountService){
         if (accountService.findById(cbu).isEmpty()){
-            throw new InvalidTransactionCbuException("Cbu is not  existent");
+            throw new InvalidIdException("Cbu is not  existent");
         }
         accountService.deposit(cbu, amount, this);
     }

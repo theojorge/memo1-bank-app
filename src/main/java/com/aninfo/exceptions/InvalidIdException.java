@@ -4,9 +4,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-public class InvalidTransactionCbuException extends RuntimeException {
+public class InvalidIdException extends RuntimeException {
 
-    public InvalidTransactionCbuException(String message) {
+    public InvalidIdException(String message) {
         super(message);
     }
 }

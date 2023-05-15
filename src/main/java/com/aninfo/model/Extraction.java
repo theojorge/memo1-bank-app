@@ -1,7 +1,7 @@
 package com.aninfo.model;
 
 import com.aninfo.exceptions.DepositNegativeSumException;
-import com.aninfo.exceptions.InvalidTransactionCbuException;
+import com.aninfo.exceptions.InvalidIdException;
 import com.aninfo.service.AccountService;
 
 import javax.persistence.Entity;
@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 @Entity
 public class Extraction extends Transaction{
     public Extraction(Double amount, Long cbu) {
-        this.amount = amount;
+        this.amount = -amount;
         this.cbu = cbu;
     }
 
@@ -17,7 +17,7 @@ public class Extraction extends Transaction{
 
     public void transactAccount(AccountService accountService){
         if (accountService.findById(cbu).isEmpty()){
-            throw new InvalidTransactionCbuException("Cbu is not  existent");
+            throw new InvalidIdException("Cbu is not  existent");
         }
-        accountService.withdraw(cbu, amount); }
+        accountService.withdraw(cbu, -amount); }
 }
